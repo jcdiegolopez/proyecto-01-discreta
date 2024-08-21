@@ -27,26 +27,125 @@ def construirConjunto():
     print("Conjunto agregado con extio")
     showConjunto(global_dict[name.upper()],name.upper())
 
+def verConjuntos():
+    print("Ver Conjuntos")
+    for name, conjunto in global_dict.items():
+        showConjunto(conjunto, name)
+
 def complemento():
     print("Complemento")
-    conjunto1name = input("Ingrese el conjunto (A a Z): ")
-    if(conjunto1name not in global_dict):
+    conjunto1name = input("Ingrese el conjunto (A a Z): ").upper()
+    if conjunto1name not in global_dict:
         print("Conjunto no encontrado")
         return
-    else:
-        conjunto1 = global_dict[conjunto1name]
+    conjunto1 = global_dict[conjunto1name]
+
+    universo = {}
+    for conjunto in global_dict.values():
+        for key in conjunto:
+            universo[key] = True
+
+    complemento_result = {}
+    for key in universo:
+        if key not in conjunto1:
+            complemento_result[key] = True
+
+    print(f"Complemento de {conjunto1name}: {{{', '.join(complemento_result.keys())}}}")
+
     
 def union():
-    print("Union")
+    print("Unión")
+    conjunto1name = input("Ingrese el primer conjunto (A a Z): ").upper()
+    if conjunto1name not in global_dict:
+        print("Conjunto no encontrado")
+        return
+    conjunto1 = global_dict[conjunto1name]
+
+    conjunto2name = input("Ingrese el segundo conjunto (A a Z): ").upper()
+    if conjunto2name not in global_dict:
+        print("Conjunto no encontrado")
+        return
+    conjunto2 = global_dict[conjunto2name]
+
+    union_result = {}
+    for key in conjunto1:
+        union_result[key] = True
+    for key in conjunto2:
+        union_result[key] = True 
+
+    print(f"Unión de {conjunto1name} y {conjunto2name}: {{{', '.join(union_result.keys())}}}")
+
 
 def interseccion():
-    print("Interseccion")
+    print("Intersección")
+    conjunto1name = input("Ingrese el primer conjunto (A a Z): ").upper()
+    if conjunto1name not in global_dict:
+        print("Conjunto no encontrado")
+        return
+    conjunto1 = global_dict[conjunto1name]
+
+    conjunto2name = input("Ingrese el segundo conjunto (A a Z): ").upper()
+    if conjunto2name not in global_dict:
+        print("Conjunto no encontrado")
+        return
+    conjunto2 = global_dict[conjunto2name]
+
+    interseccion_result = {}
+    for key in conjunto1:
+        if key in conjunto2:
+            interseccion_result[key] = True
+
+    print(f"Intersección de {conjunto1name} y {conjunto2name}: {{{', '.join(interseccion_result.keys())}}}")
+
 
 def diferencia():
     print("Diferencia")
+    conjunto1name = input("Ingrese el primer conjunto (A a Z): ").upper()
+    if conjunto1name not in global_dict:
+        print("Conjunto no encontrado")
+        return
+    conjunto1 = global_dict[conjunto1name]
+
+    conjunto2name = input("Ingrese el segundo conjunto (A a Z): ").upper()
+    if conjunto2name not in global_dict:
+        print("Conjunto no encontrado")
+        return
+    conjunto2 = global_dict[conjunto2name]
+
+    diferencia_result = {}
+    for key in conjunto1:
+        if key not in conjunto2:
+            diferencia_result[key] = True
+
+    print(f"Diferencia de {conjunto1name} - {conjunto2name}: {{{', '.join(diferencia_result.keys())}}}")
+
+
 
 def diferenciaSimetrica():
-    print("Diferencia Simetrica")
+    print("Diferencia Simétrica")
+    conjunto1name = input("Ingrese el primer conjunto (A a Z): ").upper()
+    if conjunto1name not in global_dict:
+        print("Conjunto no encontrado")
+        return
+    conjunto1 = global_dict[conjunto1name]
+
+    conjunto2name = input("Ingrese el segundo conjunto (A a Z): ").upper()
+    if conjunto2name not in global_dict:
+        print("Conjunto no encontrado")
+        return
+    conjunto2 = global_dict[conjunto2name]
+
+    diferencia_simetrica_result = {}
+    for key in conjunto1:
+        if key not in conjunto2:
+            diferencia_simetrica_result[key] = True
+    for key in conjunto2:
+        if key not in conjunto1:
+            diferencia_simetrica_result[key] = True
+
+    print(f"Diferencia Simétrica de {conjunto1name} y {conjunto2name}: {{{', '.join(diferencia_simetrica_result.keys())}}}")
+
+
     
 def operarConjuntos():
     print("Operar conjunto")
@@ -93,7 +192,8 @@ def operarConjuntos():
 while True:
     print("1. Construir Conjuntos")
     print("2. Operar Conjuntos")
-    print("3. Salir")
+    print("3. Ver Conjuntos")
+    print("4. Salir")
     opcion = input("Ingrese una opción: ")
     
     match opcion:
@@ -102,7 +202,8 @@ while True:
         case '2':
             operarConjuntos()
         case '3':
+            verConjuntos()
+        case '4':
             print("Saliendo...")
             sleep(0.5)
             break
-        
