@@ -24,13 +24,8 @@ def construirConjunto():
             return
         else:
             global_dict[name.upper()][element] = True;
-    print("Conjunto agregado con extio")
+    print("Conjunto agregado con exito")
     showConjunto(global_dict[name.upper()],name.upper())
-
-def verConjuntos():
-    print("Ver Conjuntos")
-    for name, conjunto in global_dict.items():
-        showConjunto(conjunto, name)
 
 def complemento():
     print("Complemento")
@@ -153,19 +148,6 @@ def operarConjuntos():
     global global_dict
     for key in global_dict:
         showConjunto(global_dict[key],key)
-    
-    # conjunto1name = input("Ingrese el primer conjunto (A a Z): ")
-    # if(conjunto1name not in global_dict):
-    #     print("Conjunto no encontrado")
-    #     return
-    # else:
-    #     conjunto1 = global_dict[conjunto1name]
-    # conjunto2name = input("Ingrese el segundo conjunto (A a Z): ")
-    # if(conjunto2name not in global_dict):
-    #     print("Conjunto no encontrado")
-    #     return
-    # else:
-    #     conjunto2 = global_dict[conjunto2name]
     print("Operaciones disponibles:")
     print("1. Complemento")
     print("2. Union")
@@ -192,8 +174,7 @@ def operarConjuntos():
 while True:
     print("1. Construir Conjuntos")
     print("2. Operar Conjuntos")
-    print("3. Ver Conjuntos")
-    print("4. Salir")
+    print("3. Salir")
     opcion = input("Ingrese una opción: ")
     
     match opcion:
@@ -202,8 +183,6 @@ while True:
         case '2':
             operarConjuntos()
         case '3':
-            verConjuntos()
-        case '4':
             print("Saliendo...")
             sleep(0.5)
             break
